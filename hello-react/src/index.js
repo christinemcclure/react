@@ -1,33 +1,121 @@
-import React, {useState} from 'react';
+import React, {useReducer, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// function GitHubUser({login}) { 
+//   const [data, setData] = useState(null);
+//   useEffect(() => {
+//     fetch(`https://api.github.com/users/${login}`)
+//       .then(res => res.json())
+//       .then(setData)
+//       .catch(console.error);
+//   }, []);
+//   if (data) {
+//     return <div><h1>{data.login}</h1>
+//       <img src={data.avatar_url} width={100} />
+//       <p>{JSON.stringify(data)}</p></div>;
+//   }
+//   return null;
 
-function App() {
-  const [manager, setManager] = useState("Alex");
-  const [status, setStatus] = useState("Open");
-  return (
-    <>
-    <div>
-        <h1>Manager on Duty: {manager}</h1>
-        <button onClick={() => setManager("Christine")}>New Manager</button>
-    </div>
-    <div>
-      <h1>Status: {status}</h1>
-      <button onClick={() => setStatus("Open")}>Open</button>
-      <button onClick={() => setStatus("Closed")}>Closed</button>
-      <button onClick={() => setStatus("Back in Five")}>Break</button>
+// }
 
-      </div>
-      </>
-  ) 
+
+function Checkbox() {
+  const [checked, toggle] = useReducer(
+    checked => !checked,
+    false
+  );
+
+
+  
+  return (<>
+    <input type="checkbox"
+      onChange={toggle} />
+    {checked ? "checked" : "not checked"}
+  </>
+  );
 }
 
+// function App() { 
+//   const [val, setVal] = useState("");
+//   const [val2, setVal2] = useState("");
+//   useEffect(() => {
+//     console.log(`field 1: ${val}`);
+//   }, [val] );
+//   useEffect(() => {
+//     console.log(`field 2: ${val2}`);
+//   }, [val2]);
+//   return (
+//     <>
+//       <label>Favorite Phrase:</label>
+//       <input
+//         value={val}
+//         onChange={e=> setVal(e.target.value)}
+//       />
+//       <br />
+//       <label>Second Favorite Phrase:</label>
+//       <input
+//         value={val2}
+//         onChange={e=>setVal2(e.target.value)}
+//       />
+
+//     </>
+//   )
+// }
+
+
 ReactDOM.render(
-  // <Hello library="React" message="dynamic data" number={3}/>,
-  <App />,
+
+  <Checkbox />,
   document.getElementById('root')
 );
+
+
+
+// function Checkbox() {
+//   const [checked, setChecked] = useState(false);
+//   useEffect(() => {
+//     // alert(`checked: ${checked.toString()}`);
+//     console.log(`checked: ${checked.toString()}`);
+//   });
+
+//   return (
+//     <>
+//       <input
+//         type="checkbox"
+//         value={checked}
+//         onChange={() =>
+//           setChecked(checked => !checked)}
+//       />
+//       {checked ? "checked" : "not checked"}
+//     </>
+//   )
+// }
+
+// function App() {
+//   const [year, setYear] = useState(2050);
+//   const [manager, setManager] = useState("Alex");
+//   const [status, setStatus] = useState("Open");
+//   return (
+//     <>
+//       <div>
+//         <h1>{year}</h1>
+//         <button onClick={()=> setYear(year+1) }>Click Me</button>
+//       </div>
+//     <div>
+//         <h1>Manager on Duty: {manager}</h1>
+//         <button onClick={() => setManager("Christine")}>New Manager</button>
+//     </div>
+//     <div>
+//       <h1>Status: {status}</h1>
+//       <button onClick={() => setStatus("Open")}>Open</button>
+//       <button onClick={() => setStatus("Closed")}>Closed</button>
+//       <button onClick={() => setStatus("Back in Five")}>Break</button>
+
+//       </div>
+//       </>
+//   ) 
+// }
 
 
 
